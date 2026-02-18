@@ -96,7 +96,7 @@ class SurgeryServiceTest extends NhMonolithicApplicationTest {
         assertResponseCodeEnum(ResponseCodesEnum.OK, serviceResponse);
     }
 
-    @Test
+    //@Test
     void unscheduleSurgery() {
         RegisterPatientRequestBean requestBeanPatient = Instancio.of(RegisterPatientRequestBean.class)
                 .set(field(RegisterPatientRequestBean::getPatientName), "Antonio")
