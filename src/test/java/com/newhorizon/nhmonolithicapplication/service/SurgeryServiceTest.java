@@ -126,8 +126,8 @@ class SurgeryServiceTest extends NhMonolithicApplicationTest {
         UnscheduleSurgeryRequestBean requestBean = Instancio.of(UnscheduleSurgeryRequestBean.class)
                 .set(field(UnscheduleSurgeryRequestBean::getSurgeryId), scheduledSurgery.getSurgeryId())
                 .create();
-        UnscheduleSurgeryResponseBean serviceResponse = surgeryService.unscheduleSurgery(requestBean);
         log.info(requestBean.toString());
+        UnscheduleSurgeryResponseBean serviceResponse = surgeryService.unscheduleSurgery(requestBean);
         log.info(serviceResponse.toString());
 
         assertResponseCodeEnum(ResponseCodesEnum.OK, serviceResponse);
