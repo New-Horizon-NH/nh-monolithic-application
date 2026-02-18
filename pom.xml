@@ -43,7 +43,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/New-Horizon-NH/</url>
+            <url>https://maven.pkg.github.com/New-Horizon-NH/*</url>
             <layout>default</layout>
         </repository>
     </repositories>
