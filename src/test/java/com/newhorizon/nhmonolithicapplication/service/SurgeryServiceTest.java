@@ -122,9 +122,9 @@ class SurgeryServiceTest extends NhMonolithicApplicationTest {
                 .set(field(ScheduleSurgeryRequestBean::getSurgicalRoomNumber), requestBeanRoom.getRoomNumber())
                 .set(field(ScheduleSurgeryRequestBean::getSurgeryTypeCode), requestBeanSurgeryType.getSurgeryTypeCode())
                 .create();
-        String surgeryId = surgeryService.scheduleSurgery(requestBeanSchedule).getSurgeryId();
+        ScheduleSurgeryResponseBean scheduledSurgery = surgeryService.scheduleSurgery(requestBeanSchedule);
         UnscheduleSurgeryRequestBean requestBean = Instancio.of(UnscheduleSurgeryRequestBean.class)
-                .set(field(UnscheduleSurgeryRequestBean::getSurgeryId), surgeryId)
+                .set(field(UnscheduleSurgeryRequestBean::getSurgeryId), scheduledSurgery.getSurgeryId())
                 .create();
         UnscheduleSurgeryResponseBean serviceResponse = surgeryService.unscheduleSurgery(requestBean);
         log.info(requestBean.toString());
