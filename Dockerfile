@@ -13,6 +13,6 @@ RUN mkdir -p /opt/$ARTIFACT_NAME/logs
 
 WORKDIR /opt/$ARTIFACT_NAME
 
-COPY application/target/$ARTIFACT_NAME-$ARTIFACT_VERSION.jar app.jar
+COPY target/$ARTIFACT_NAME-$ARTIFACT_VERSION.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
