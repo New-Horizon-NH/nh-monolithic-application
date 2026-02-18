@@ -1,0 +1,71 @@
+management:
+  endpoints:
+    metrics:
+      enabled: true
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      group:
+        readiness:
+          include: readinessState
+          show-details: always
+        liveness:
+          include: livenessState
+          show-details: always
+      probes:
+        enabled: true
+spring:
+  application:
+    name: nh-monolithic-application
+  datasource:
+    url: ${DATASOURCE_MYSQL_URL}
+    username: ${DATASOURCE_MYSQL_USERNAME}
+    password: ${DATASOURCE_MYSQL_PASSWORD}
+    driver-class-name: ${DATASOURCE_MYSQL_DRIVER}
+  data:
+    jdbc:
+      dialect: mysql
+  liquibase:
+    change-log: classpath:db/changelog-root.xml
+com:
+  new-horizon:
+    documents:
+      upload:
+        exam-result: ${EXAM_RESULT_UPLOAD_PATH}
+        emergency-room-document: ${EMERGENCY_ROOM_DOCUMENT_UPLOAD_PATH}
+    influx:
+      database-url: ${INFLUX_DATABASE_URL}
+      credentials:
+        username: ${INFLUX_USERNAME}
+        password: ${INFLUX_PASSWORD}
+    minio:
+      credentials:
+        access-key: ${MINIO_ACCESS_KEY}
+        secret-key: ${MINIO_ACCESS_SECRET}
+      endpoint-url: ${MINIO_ENDPOINT_URL}
+    mqtt:
+      client-id: ${spring.application.name}
+      credentials:
+        username: ${MQTT_USERNAME}
+        password: ${MQTT_PASSWORD}
+      topics:
+        measurement: monitoring/+
+info:
+  app:
+    artifact: "@project.artifactId@"
+    name: "@project.name@"
+    version: "@project.version@"
+    lia-web-starter: "@lia-web-starter.version@"
+logging:
+  pattern:
+    # Logging pattern containing traceId and spanId; no longer provided through Sleuth by default
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+server:
+  servlet:
+    context-path: /${spring.application.name}
