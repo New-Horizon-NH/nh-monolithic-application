@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>nh-monolithic-application-bom</artifactId>
+    <artifactId>nh-monolithic-application</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <scm>
