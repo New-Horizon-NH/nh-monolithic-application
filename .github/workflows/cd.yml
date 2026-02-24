@@ -1,0 +1,46 @@
+name: CD
+# Triggers
+on:
+  workflow_dispatch: # Manual trigger from the Actions tab
+    inputs:
+      country:
+        description: "Select the country"
+        type: string
+        required: false
+        default: "."
+      farm:
+        description: "Select the farm"
+        type: string
+        required: false
+        default: "."
+      environment:
+        description: "Select the environment"
+        type: choice
+        options:
+          - dev
+          - test
+          - preprod
+          - prod
+        required: false
+        default: dev
+      container-image:
+        description: "Select the container image to patch in manifest"
+        type: string
+        required: true
+
+permissions:
+  contents: write
+  packages: write
+  pages: write
+  actions: write
+
+jobs:
+  ci:
+    secrets: inherit
+    uses: pingmyheart/Ping-Actions/.github/workflows/cd-dispatcher.yml@main
+    with:
+      country: ${{ github.event.inputs.country }}
+      farm: ${{ github.event.inputs.farm }}
+      environment: ${{ github.event.inputs.environment }}
+      container-image: ${{ github.event.inputs.container-image}}
+      manifest-repo: New-Horizon-NH/nh-manifest
